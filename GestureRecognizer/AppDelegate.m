@@ -8,17 +8,35 @@
 
 #import "AppDelegate.h"
 
+#import "RootViewController.h"
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
+-(void)dealloc
+{
+    [self.window release];
+    [super dealloc];
+}
 
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    //定义一个导航控制器
+    RootViewController *root=[[RootViewController alloc]init];
+    
+    UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:root];
+    
+    self.window.rootViewController=nav;
+    
+    [root release];
+    [nav release];
+    
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
